@@ -2,6 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>💞 Dunia Berputar di Sekelilingmu 💞</title>
   <style>
     body {
@@ -20,12 +21,16 @@
       color: #ff3c8b;
       text-shadow: 2px 2px 5px white;
       margin-bottom: 10px;
+      text-align: center;
+      padding: 0 10px;
+      font-size: 1.6em;
     }
 
     .photo-section {
       position: relative;
-      width: 480px;
-      height: 480px;
+      width: 90vw;
+      max-width: 480px;
+      aspect-ratio: 1/1;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -36,8 +41,8 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 480px;
-      height: 480px;
+      width: 100%;
+      height: 100%;
       transform: translate(-50%, -50%);
       animation: orbitRotate 30s linear infinite;
     }
@@ -47,8 +52,8 @@
       top: 0;
       left: 50%;
       transform: translateX(-50%);
-      width: 480px;
-      height: 480px;
+      width: 100%;
+      height: 100%;
       object-fit: contain;
       opacity: 0.9;
       filter: drop-shadow(0 10px 30px rgba(0,0,0,0.4));
@@ -61,11 +66,11 @@
 
     /* foto kekasih di tengah */
     .photo-frame {
-      width: 220px;
-      height: 220px;
+      width: 45%;
+      aspect-ratio: 1/1;
       border-radius: 50%;
       overflow: hidden;
-      border: 6px solid #ff7eb3;
+      border: 5px solid #ff7eb3;
       box-shadow: 0 0 30px rgba(255, 0, 100, 0.4);
       animation: pulse 3s ease-in-out infinite;
       z-index: 5;
@@ -82,13 +87,13 @@
       50% { transform: scale(1.05); box-shadow: 0 0 60px rgba(255, 0, 100, 0.6); }
     }
 
-    /* kotak pesan cinta */
+    /* pesan cinta */
     .message-box {
       text-align: center;
       color: #ff0077;
-      font-size: 1.1em;
+      font-size: 1em;
       margin-top: 15px;
-      max-width: 400px;
+      max-width: 90%;
       animation: fadeIn 2s ease-in-out;
     }
 
@@ -111,9 +116,11 @@
 
     /* tombol kecepatan animasi */
     .controls {
-      margin-top: 20px;
+      margin-top: 15px;
       display: flex;
-      gap: 15px;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     .controls button {
@@ -126,11 +133,25 @@
       cursor: pointer;
       box-shadow: 0 4px 10px rgba(255, 0, 100, 0.3);
       transition: transform 0.2s;
+      font-size: 0.9em;
     }
 
     .controls button:hover {
       transform: scale(1.1);
       background-color: #ff4081;
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.3em;
+      }
+      .message-box {
+        font-size: 0.9em;
+      }
+      .controls button {
+        padding: 8px 16px;
+        font-size: 0.85em;
+      }
     }
   </style>
 </head>
@@ -205,7 +226,6 @@
     function changeMessage() {
         index = (index + 1) % messages.length;
         const box = document.getElementById('messageBox');
-        const quote = document.getElementById('quote');
         box.innerHTML = messages[index].text + `<div id="quote">${messages[index].quote}</div>`;
         createParticles();
     }
