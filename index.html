@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untuk Kekasihku ❤️</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Georgia', serif;
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow-x: hidden;
+        position: relative;
+    }
+
+    .stars {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .star {
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background: white;
+        border-radius: 50%;
+        animation: twinkle 3s infinite;
+    }
+
+    @keyframes twinkle {
+        0%,100% {opacity: 0.3;}
+        50% {opacity: 1;}
+    }
+
+    .container {
+        max-width: 900px;
+        width: 90%;
+        position: relative;
+        z-index: 5;
+    }
+
+    .card {
+        background: rgba(255,255,255,0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 30px;
+        padding: 60px 50px;
+        text-align: center;
+        box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+        margin-top: 100px;
+        animation: fadeInUp 1s ease;
+        position: relative;
+    }
+
+    @keyframes fadeInUp {
+        from {opacity:0; transform:translateY(50px);}
+        to {opacity:1; transform:translateY(0);}
+    }
+
+    h1 {
+        color: #2d3436;
+        font-size: 2.5em;
+        margin-bottom: 10px;
+        font-weight: 500;
+    }
+
+    .subtitle {
+        color: #636e72;
+        font-style: italic;
+        margin-bottom: 40px;
+    }
+
+    /* Globe container */
+    .photo-section {
+        position: relative;
+        width: 420px;
+        height: 420px;
+        margin: 0 auto 30px;
+    }
+
+    .orbit-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 420px;
+        height: 420px;
+        transform: translate(-50%, -50%);
+        animation: orbitRotate 30s linear infinite;
+        z-index: 2;
+    }
+
+    .orbit-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        opacity: 0.9;
+        filter: drop-shadow(0 10px 30px rgba(0,0,0,0.4));
+    }
+
+    @keyframes orbitRotate {
+        from {transform: translate(-50%, -50%) rotate(0deg);}
+        to {transform: translate(-50%, -50%) rotate(360deg);}
+    }
+
+    /* Foto di tengah */
+    .photo-frame {
+        width: 240px;
+        height: 240px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        overflow: hidden;
+        border: 8px solid white;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.4),
+                    0 0 0 2px rgba(102,126,234,0.5);
+        background: white;
+        z-index: 3;
+        cursor: pointer;
+        transition: all 0.4s ease;
+        animation: photoFloat 3s ease-in-out infinite;
+    }
+
+    @keyframes photoFloat {
+        0%,100% {transform: translate(-50%, -50%) translateY(0);}
+        50% {transform: translate(-50%, -50%) translateY(-8px);}
+    }
+
+    .photo-frame:hover {
+        transform: translate(-50%, -50%) scale(1.05);
+    }
+
+    .photo-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .upload-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #636e72;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    }
+
+    input[type="file"] {display: none;}
+
+    .speed-control {
+        text-align: center;
+        margin-top: 10px;
+        color: #636e72;
+    }
+
+    .speed-control button {
+        background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+        color: white;
+        border: none;
+        padding: 8px 18px;
+        border-radius: 20px;
+        cursor: pointer;
+        margin: 5px;
+        transition: all 0.3s ease;
+    }
+
+    .speed-control button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+    }
+
+    .hearts-decoration {
+        font-size: 2em;
+        margin: 25px 0;
+    }
+
+    .hearts-decoration span {
+        display: inline-block;
+        animation: heartPulse 2s infinite;
+        margin: 0 8px;
+    }
+
+    @keyframes heartPulse {
+        0%,100% {transform:scale(1);opacity:0.7;}
+        50% {transform:scale(1.3);opacity:1;}
+    }
+
+    .message-box {
+        font-size: 1.1em;
+        line-height: 1.8;
+        color: #2d3436;
+        margin: 25px auto;
+        max-width: 600px;
+    }
+
+    .highlight {
+        color: #d63031;
+        font-weight: 600;
+        font-style: italic;
+    }
+
+    .button-group {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-top: 30px;
+    }
+
+    button {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        padding: 15px 35px;
+        border-radius: 50px;
+        font-size: 1em;
+        cursor: pointer;
+        box-shadow: 0 8px 20px rgba(102,126,234,0.4);
+        transition: all 0.3s ease;
+    }
+
+    button:hover {
+        transform: translateY(-3px);
+    }
+
+    .love-quote {
+        font-style: italic;
+        color: #555;
+        margin-top: 30px;
+        border-top: 1px solid #ddd;
+        padding-top: 20px;
+    }
+
+    @media (max-width: 768px) {
+        .photo-section {
+            width: 300px;
+            height: 300px;
+        }
+        .photo-frame {
+            width: 180px;
+            height: 180px;
+        }
+        h1 {font-size: 2em;}
+    }
+</style>
+</head>
+<body>
+<div class="stars" id="stars"></div>
+
+<div class="container">
+    <div class="card">
+        <h1>Keliling Dunia Bersamamu</h1>
+        <p class="subtitle">Petualangan cinta di setiap benua ❤️</p>
+
+        <div class="photo-section">
+            <div class="orbit-container" id="orbitContainer">
+                <img src="png-transparent-world-travel-attractions-landmark-material-globe-city-happy-birthday-vector-images.png" alt="Landmarks Orbit">
+            </div>
+            <div class="photo-frame" onclick="document.getElementById('photoUpload').click()">
+                <div class="upload-placeholder" id="placeholder">
+                    <span>📷</span>
+                    <p>Klik untuk upload foto</p>
+                </div>
+                <img id="uploadedPhoto" style="display:none;" alt="Foto Kekasih">
+            </div>
+        </div>
+
+        <input type="file" id="photoUpload" accept="image/*">
+
+        <div class="speed-control">
+            <p>Kecepatan Rotasi:</p>
+            <button onclick="changeSpeed('slow')">🐢 Lambat</button>
+            <button onclick="changeSpeed('normal')">✈️ Normal</button>
+            <button onclick="changeSpeed('fast')">🚀 Cepat</button>
+        </div>
+
+        <div class="hearts-decoration">
+            <span>❤️</span><span>💕</span><span>❤️</span>
+        </div>
+
+        <div class="message-box" id="messageBox">
+            <p>Bersamamu, aku ingin <span class="highlight">menjelajahi setiap sudut dunia</span> ini.</p>
+            <p>Dari Menara Eiffel di Paris hingga Patung Liberty di New York, dari Colosseum di Roma hingga Taj Mahal di India.</p>
+            <p>Karena destinasi terindahku <span class="highlight">adalah di sampingmu</span>, dimanapun itu berada. 🌍✈️</p>
+        </div>
+
+        <div class="button-group">
+            <button onclick="createParticles()">✨ Buat Romantis</button>
+            <button onclick="changeMessage()">💌 Pesan Lain</button>
+        </div>
+
+        <p class="love-quote" id="quote">"Petualangan terbaik adalah yang kita lalui bersama."</p>
+    </div>
+</div>
+
+<script>
+    // Bintang
+    function createStars() {
+        const stars = document.getElementById('stars');
+        for (let i = 0; i < 100; i++) {
+            const s = document.createElement('div');
+            s.className = 'star';
+            s.style.left = Math.random() * 100 + '%';
+            s.style.top = Math.random() * 100 + '%';
+            s.style.animationDelay = Math.random() * 3 + 's';
+            stars.appendChild(s);
+        }
+    }
+    createStars();
+
+    // Upload foto
+    document.getElementById('photoUpload').addEventListener('change', e => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = ev => {
+                const img = document.getElementById('uploadedPhoto');
+                img.src = ev.target.result;
+                img.style.display = 'block';
+                document.getElementById('placeholder').style.display = 'none';
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    // Ganti kecepatan orbit
+    function changeSpeed(speed) {
+        const orbit = document.getElementById('orbitContainer');
+        orbit.style.animation = 'none';
+        setTimeout(() => {
+            if (speed === 'slow') orbit.style.animation = 'orbitRotate 50s linear infinite';
+            else if (speed === 'fast') orbit.style.animation = 'orbitRotate 15s linear infinite';
+            else orbit.style.animation = 'orbitRotate 30s linear infinite';
+        }, 10);
+    }
+
+    // Pesan lain
+    const messages = [
+        {
+            text: `<p>Bersamamu, aku ingin <span class="highlight">menjelajahi setiap sudut dunia</span> ini.</p>
+                   <p>Dari Menara Eiffel hingga Taj Mahal.</p>
+                   <p>Karena destinasi terindahku <span class="highlight">adalah di sampingmu</span>.</p>`,
+            quote: '"Petualangan terbaik adalah yang kita lalui bersama."'
+        },
+        {
+            text: `<p>Setiap landmark akan menjadi <span class="highlight">saksi cinta kita</span>.</p>
+                   <p>Kota yang kita kunjungi akan menyimpan kenangan indah kita.</p>
+                   <p>Mari buat <span class="highlight">album cinta</span> di setiap benua. 📸</p>`,
+            quote: '"Tempat tidak penting, yang penting siapa yang bersamamu."'
+        },
+        {
+            text: `<p>Dari barat ke timur, aku ingin <span class="highlight">bersamamu selalu</span>.</p>
+                   <p>Menyaksikan matahari terbit dan terbenam bersamamu.</p>
+                   <p>Karena setiap momen <span class="highlight">lebih indah denganmu</span>. 🌅</p>`,
+            quote: '"You are my favorite destination."'
+        }
+    ];
+    let index = 0;
+    function changeMessage() {
+        index = (index + 1) % messages.length;
+        const box = document.getElementById('messageBox');
+        const quote = document.getElementById('quote');
+        box.innerHTML = messages[index].text;
+        quote.textContent = messages[index].quote;
+    }
+
+    // Partikel love
+    function createParticles() {
+        const hearts = ['❤️','💖','💗','✨','🌟','💫','🎈'];
+        for (let i=0;i<25;i++){
+            const h=document.createElement('div');
+            h.textContent=hearts[Math.floor(Math.random()*hearts.length)];
+            h.style.position='fixed';
+            h.style.left=Math.random()*100+'%';
+            h.style.bottom='-10px';
+            h.style.fontSize=(Math.random()*1+1)+'em';
+            h.style.animation=`floatUp ${3+Math.random()*3}s linear forwards`;
+            document.body.appendChild(h);
+            setTimeout(()=>h.remove(),5000);
+        }
+    }
+
+    const style=document.createElement('style');
+    style.innerHTML=`@keyframes floatUp {
+        from {transform: translateY(0); opacity:1;}
+        to {transform: translateY(-120vh); opacity:0;}
+    }`;
+    document.head.appendChild(style);
+</script>
+</body>
+</html>
